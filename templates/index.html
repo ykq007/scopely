@@ -1,0 +1,19 @@
+<!-- index.html -->
+
+<form action="/" method="post">
+    {% for identifier, image_filename in image_mapping.items() %}
+    <label>
+        <input type="checkbox" name="image" value="{{ identifier }}"> {{ identifier }}
+        <img src="{{ url_for('static', filename='images/' + image_filename + '.jpg') }}" alt="{{ identifier }}">
+    </label><br>
+    {% endfor %}
+    <input type="submit" value="Generate Collage">
+</form>
+<hr>
+<h2>Generated Collage:</h2>
+{% if collage_url %}
+<img src="{{ collage_url }}" alt="Generated Collage">
+{% else %}
+<p>No collage generated yet.</p>
+{% endif %}
+
